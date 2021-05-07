@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Movie } from '../../interfaces/movie';
-import { MOVIES } from '../../data/mock-movies';
+import { Movie } from '../../../interfaces/movie';
+import { MOVIES } from '../../../data/mock-movies';
 
 @Component({
   selector: 'app-movies',
