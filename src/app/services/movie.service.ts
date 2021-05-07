@@ -16,4 +16,9 @@ export class MovieService {
     return movies;
   }
 
+  getMovie(id: number): Observable<Movie> {
+    const movie = of(MOVIES.find(movie => movie.id === id) as Movie)
+    return movie;
+  }
+
 }

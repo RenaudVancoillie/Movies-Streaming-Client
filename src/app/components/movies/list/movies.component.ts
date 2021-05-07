@@ -12,16 +12,10 @@ export class MoviesComponent implements OnInit {
   
   movies: Movie[] = [];
 
-  selectedMovie?: Movie;
-
   constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
     this.getMovies();
-  }
-
-  onSelect(movie: Movie): void {
-    this.selectedMovie = movie;
   }
 
   getMovies(): void {

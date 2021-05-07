@@ -9,7 +9,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let movie of movies" (click)="onSelect(movie)">
+        <tr *ngFor="let movie of movies" routerLink="/movies/{{movie.id}}">
             <td>{{movie.title}}</td>
             <td>{{movie.year}}</td>
             <td>{{movie.rating}}</td>
@@ -17,4 +17,3 @@
         </tr>
     </tbody>
 </table>
-<app-movie [movie]="selectedMovie"></app-movie>

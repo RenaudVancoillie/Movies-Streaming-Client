@@ -22,10 +22,17 @@ dd {
 label {
   color: white;
 }
-a {
+button {
+  font-size: 1.2rem;
   text-decoration: none;
   color: #336699;
+  margin-top: 1em;
+  border: none;
+  background: none;
+  display: block;
+  margin-left: auto;
 }
-a:hover {
-    color: #82add8;
+button:hover {
+  color: #82add8;
+  cursor: pointer;
 }
