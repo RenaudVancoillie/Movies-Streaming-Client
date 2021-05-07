@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Movie } from '../../interfaces/movie';
+import { MOVIES } from '../../data/mock-movies';
 
 @Component({
   selector: 'app-movies',
@@ -8,19 +9,8 @@ import { Movie } from '../../interfaces/movie';
   styleUrls: ['./movies.component.css']
 })
 export class MoviesComponent implements OnInit {
-
-  movie: Movie = {
-    id: 1,
-    imdbId: '0111161',
-    title: 'The Shawshank Redemption',
-    coverUrl: 'The Shawshank Redemption.jpg',
-    year: 1994,
-    originalAirDate: '23 Sep 1994 (Mexico)',
-    kind: 'movie',
-    rating: 93.00,
-    plot: null,
-    top250Rank: 1
-  };
+  
+  movies = MOVIES;
 
   constructor() { }
 
