@@ -1,4 +1,4 @@
-import { Movie } from '../interfaces/movie';
+import { Movie } from 'src/app/interfaces/movie';
 
 export const MOVIES: Movie[] = [
     {
