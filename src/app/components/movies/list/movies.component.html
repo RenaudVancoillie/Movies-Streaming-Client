@@ -9,7 +9,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let movie of movies">
+        <tr *ngFor="let movie of movies" (click)="onSelect(movie)">
             <td>{{movie.title}}</td>
             <td>{{movie.year}}</td>
             <td>{{movie.rating}}</td>
@@ -17,3 +17,4 @@
         </tr>
     </tbody>
 </table>
+<app-movie [movie]="selectedMovie"></app-movie>
