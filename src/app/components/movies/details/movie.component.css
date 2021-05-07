@@ -1,0 +1,31 @@
+* {box-sizing: border-box;}
+
+.wrapper {
+  font-family: Arial, Helvetica, sans-serif;
+  border: 2px solid #336699;
+  border-radius: 5px;
+  background-color: #82add8;
+}
+dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  margin: 1em;
+  line-height: 1.4;
+}
+dt {
+  grid-column: 1;
+  font-weight: bold;
+}
+dd {
+   grid-column: 2;
+}
+label {
+  color: white;
+}
+a {
+  text-decoration: none;
+  color: #336699;
+}
+a:hover {
+    color: #82add8;
+}
