@@ -1,24 +1,39 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 import { Movie } from 'src/app/interfaces/movie';
-import { MOVIES } from 'src/app/data/mock-movies';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
 
-  constructor() { }
+  private url: string = 'https://localhost:44364';
+
+  constructor(private http: HttpClient) { }
 
   getMovies(): Observable<Movie[]> {
-    const movies = of(MOVIES);
-    return movies;
+    const endpoint = `${this.url}/api/movies`;
+    return this.http.get<Movie[]>(endpoint).pipe(
+        catchError(this.handleError<Movie[]>('getMovies', []))
+      )
   }
 
   getMovie(id: number): Observable<Movie> {
-    const movie = of(MOVIES.find(movie => movie.id === id) as Movie)
-    return movie;
+    const endpoint = `${this.url}/api/movies/${id}`;
+    return this.http.get<Movie>(endpoint).pipe(
+        catchError(this.handleError<Movie>(`getMovie id=${id}`))
+      );
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      console.log(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    }
   }
 
 }
