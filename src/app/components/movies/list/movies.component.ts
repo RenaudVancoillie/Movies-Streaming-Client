@@ -14,13 +14,23 @@ export class MoviesComponent implements OnInit {
 
   constructor(private movieService: MovieService) { }
 
-  ngOnInit(): void {
-    this.getMovies();
+  async ngOnInit(): Promise<void> {
+    await this.movieService.connect();
+    this.getMoviesStreaming();
   }
 
   getMovies(): void {
     this.movieService.getMovies()
       .subscribe(movies => this.movies = movies);
+  }
+
+  getMoviesStreaming(): void {
+    this.movieService.getMoviesStreaming()
+      .subscribe({
+        next: (movie: Movie) => this.movies.push(movie),
+        complete: () => console.log("All movies have been retrieved"),
+        error: (error: any) => console.error("An error has occurred: ", error)
+      });
   }
 
 }
