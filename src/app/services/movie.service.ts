@@ -17,7 +17,6 @@ export class MovieService {
   constructor(private http: HttpClient) { }
 
   public async connect(): Promise<void> {
-    console.log("connecting");
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withAutomaticReconnect()
       .withUrl(`${this.url}/hubs/app`)
@@ -25,7 +24,6 @@ export class MovieService {
     
     try {
       await this.hubConnection.start();
-      return console.log("connected");
     } catch (error) {
       return console.error("Error while trying to connect to the app hub: ", error);
     }
@@ -42,8 +40,12 @@ export class MovieService {
     )
   }
 
-  getMoviesStreaming(): any {
-    return this.hubConnection.stream("GetAllMoviesStreamingWithChannelReader", 500);  // GetAllMoviesStreamingWithIAsyncEnumerable OR GetAllMoviesStreamingWithChannelReader
+  getMoviesStreaming(delay: number): signalR.IStreamResult<Movie> {
+    return this.hubConnection.stream("GetAllMoviesStreamingWithChannelReader", delay);  // GetAllMoviesStreamingWithIAsyncEnumerable OR GetAllMoviesStreamingWithChannelReader
+  }
+
+  getMoviesStreamingWithPointer(delay: number, count: number, before: number, after: number): signalR.IStreamResult<Movie> {
+    return this.hubConnection.stream("GetPaginatedMoviesStreamingWithIAsyncEnumerable", delay, count, before, after) // GetPaginatedMoviesStreamingWithIAsyncEnumerable OR GetPaginatedMoviesStreamingWithChannelReader
   }
 
   getMovie(id: number): Observable<Movie> {
